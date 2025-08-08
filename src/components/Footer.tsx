@@ -1,7 +1,7 @@
 import React from 'react'
 import { Zap, Mail, Phone, MapPin } from 'lucide-react'
 
-const Footer: React.FC = () => {
+export const Footer: React.FC = () => {
   return (
     <footer id="contact" className="bg-gray-900 text-white py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">

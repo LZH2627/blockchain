@@ -1,7 +1,7 @@
 import React from 'react'
 import { TrendingUp, TrendingDown, ArrowUpRight, ArrowDownLeft } from 'lucide-react'
 
-const TradePage: React.FC = () => {
+export const TradePage: React.FC = () => {
   const cryptoData = [
     { symbol: 'BTC', name: 'Bitcoin', price: 43000, change: 2.5, volume: '1.2B' },
     { symbol: 'ETH', name: 'Ethereum', price: 2000, change: -1.2, volume: '800M' },

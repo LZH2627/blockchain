@@ -4,7 +4,7 @@ import { Mail, Lock, Eye, EyeOff, Zap } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
 import toast from 'react-hot-toast'
 
-const SignIn: React.FC = () => {
+export const SignIn: React.FC = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)

@@ -1,7 +1,7 @@
 import React from 'react'
 import { TrendingUp, TrendingDown, DollarSign, Wallet, ArrowUpRight, ArrowDownLeft } from 'lucide-react'
 
-const Dashboard: React.FC = () => {
+export const Dashboard: React.FC = () => {
   const portfolioData = [
     { name: 'Bitcoin', symbol: 'BTC', amount: 0.5, value: 21500, change: 2.5, color: 'text-orange-500' },
     { name: 'Ethereum', symbol: 'ETH', amount: 3.2, value: 6400, change: -1.2, color: 'text-blue-500' },

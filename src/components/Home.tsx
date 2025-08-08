@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Shield, TrendingUp, Zap, Users, ArrowRight, Star, CheckCircle } from 'lucide-react'
 
-const Home: React.FC = () => {
+export const Home: React.FC = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}

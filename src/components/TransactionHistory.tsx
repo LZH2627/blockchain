@@ -15,7 +15,7 @@ interface TransactionHistoryProps {
   onClose: () => void
 }
 
-const TransactionHistory: React.FC<TransactionHistoryProps> = ({ onClose }) => {
+export const TransactionHistory: React.FC<TransactionHistoryProps> = ({ onClose }) => {
   const mockTransactions: Transaction[] = [
     {
       id: '1',

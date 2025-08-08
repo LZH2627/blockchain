@@ -11,7 +11,7 @@ interface NewsArticle {
   category: string
 }
 
-const NewsPage: React.FC = () => {
+export const NewsPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('all')
 

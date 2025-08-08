@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { TrendingUp, TrendingDown, ArrowLeft } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
-const CryptoDetailPage: React.FC = () => {
+export const CryptoDetailPage: React.FC = () => {
   const { cryptoId } = useParams()
 
   // Mock data - in real app, fetch based on cryptoId
