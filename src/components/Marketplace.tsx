@@ -73,43 +73,17 @@ const Marketplace: React.FC<MarketplaceProps> = ({ onClose }) => {
   const [selectedItem, setSelectedItem] = useState<MarketplaceItem | null>(null)
 
   const categories = [
-    { id: 'all', name: 'All Items', count: 1247 },
-    { id: 'electronics', name: 'Electronics', count: 324 },
+    { id: 'all', name: 'All Items', count: 1047 },
+    { id: 'electronics', name: 'Electronics', count: 224 },
     { id: 'fashion', name: 'Fashion', count: 189 },
     { id: 'home', name: 'Home & Garden', count: 156 },
     { id: 'sports', name: 'Sports', count: 98 },
     { id: 'books', name: 'Books', count: 87 },
-    { id: 'collectibles', name: 'Collectibles', count: 234 },
+    { id: 'collectibles', name: 'Collectibles', count: 134 },
     { id: 'services', name: 'Services', count: 159 }
   ]
 
   const [marketplaceItems] = useState<MarketplaceItem[]>([
-    {
-      id: '1',
-      title: 'MacBook Pro 16" M3 Max - Like New',
-      description: 'Barely used MacBook Pro with M3 Max chip, 32GB RAM, 1TB SSD. Perfect for developers and creators.',
-      price: 3299,
-      originalPrice: 3999,
-      category: 'electronics',
-      seller: {
-        name: 'TechDealer Pro',
-        avatar: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150',
-        rating: 4.9,
-        verified: true,
-        location: 'San Francisco, CA'
-      },
-      images: [
-        'https://images.pexels.com/photos/205421/pexels-photo-205421.jpeg?auto=compress&cs=tinysrgb&w=400',
-        'https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&w=400'
-      ],
-      tags: ['Apple', 'Laptop', 'M3 Max', 'Professional'],
-      stats: { views: 1247, likes: 89, comments: 23, sales: 156 },
-      condition: 'like-new',
-      shipping: { free: true, time: '2-3 days' },
-      featured: true,
-      trending: true,
-      discount: 18
-    },
     {
       id: '2',
       title: 'Vintage Rolex Submariner 1970s',

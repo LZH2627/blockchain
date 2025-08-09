@@ -7,7 +7,7 @@ const Testimonials = () => {
       name: "Sarah Chen",
       role: "CTO, TechCorp",
       image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=150&q=80",
-      content: "BlockChain Pro has revolutionized our payment infrastructure. The speed and security are unmatched, and the developer experience is exceptional.",
+      content: "CryptoBolt has revolutionized our payment infrastructure. The speed and security are unmatched, and the developer experience is exceptional.",
       rating: 5
     },
     {

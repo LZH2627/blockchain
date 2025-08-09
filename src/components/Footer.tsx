@@ -12,17 +12,17 @@ export const Footer: React.FC = () => {
               <div className="p-2 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600">
                 <Zap className="h-6 w-6 text-white" />
               </div>
-              <span className="text-xl font-bold">CryptoVault</span>
+              <span className="text-xl font-bold">CryptoBolt</span>
             </div>
             <p className="text-gray-400 mb-6 max-w-md">
               Your trusted partner in cryptocurrency trading and investment. 
-              Join millions of users who rely on CryptoVault for secure, 
+              Join millions of users who rely on CryptoBolt for secure, 
               fast, and reliable crypto transactions.
             </p>
             <div className="space-y-2">
               <div className="flex items-center text-gray-400">
                 <Mail className="h-4 w-4 mr-2" />
-                <span>support@cryptovault.com</span>
+                <span>support@cryptobolt.com</span>
               </div>
               <div className="flex items-center text-gray-400">
                 <Phone className="h-4 w-4 mr-2" />
@@ -60,7 +60,7 @@ export const Footer: React.FC = () => {
 
         <div className="border-t border-gray-800 mt-12 pt-8 text-center">
           <p className="text-gray-400">
-            © 2024 CryptoVault. All rights reserved. Built with ChatAndBuild.
+            © 2024 CryptoBolt. All rights reserved. Built with ChatAndBuild.
           </p>
         </div>
       </div>

@@ -4,6 +4,7 @@ interface User {
   id: string
   email: string
   name?: string
+  daoMembership?: 'none' | 'basic' | 'premium' | 'elite'
 }
 
 interface AuthContextType {
@@ -12,6 +13,7 @@ interface AuthContextType {
   login: (email: string, password: string) => Promise<void>
   logout: () => void
   loading: boolean
+  updateDaoMembership: (membership: 'none' | 'basic' | 'premium' | 'elite') => void
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -55,7 +57,8 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ childr
     const mockUser: User = {
       id: '1',
       email,
-      name: email.split('@')[0]
+      name: email.split('@')[0],
+      daoMembership: 'none' // Default to no membership
     }
     
     setUser(mockUser)
@@ -75,12 +78,21 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ childr
     localStorage.removeItem('user')
   }
 
+  const updateDaoMembership = (membership: 'none' | 'basic' | 'premium' | 'elite') => {
+    if (user) {
+      const updatedUser = { ...user, daoMembership: membership }
+      setUser(updatedUser)
+      localStorage.setItem('user', JSON.stringify(updatedUser))
+    }
+  }
+
   const value: AuthContextType = {
     isAuthenticated,
     user,
     login,
     logout,
-    loading
+    loading,
+    updateDaoMembership
   }
 
   return (
