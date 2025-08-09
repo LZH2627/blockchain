@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
-import { ShoppingBag, Star, Shield, Zap, Users, Vote, Crown, Award, Image, TrendingUp, Eye, Heart, Filter, Grid, List, Search, X } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
+import { ShoppingBag, Star, Shield, Zap, Users, Vote, Crown, Award, Image, TrendingUp, Eye, Heart, Filter, Grid, List, Search, X, CheckCircle } from 'lucide-react'
 
 export const MarketplacePage: React.FC = () => {
+  const navigate = useNavigate()
   const [activeNFTTab, setActiveNFTTab] = useState<'featured' | 'trending' | 'collections' | 'art' | 'gaming' | 'music'>('featured')
   const [nftViewMode, setNftViewMode] = useState<'grid' | 'list'>('grid')
   const [selectedNFT, setSelectedNFT] = useState<any>(null)
+  const [selectedProduct, setSelectedProduct] = useState<any>(null)
 
   const products = [
     {
@@ -13,10 +16,26 @@ export const MarketplacePage: React.FC = () => {
       price: 99.99,
       rating: 4.9,
       image: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=400',
-      description: 'Join the CryptoVault DAO with basic voting rights and governance participation',
+      description: 'Join the CryptoBolt DAO with basic voting rights and governance participation',
       type: 'membership',
       tier: 'basic',
-      benefits: ['Voting Rights', 'Proposal Viewing', 'Community Access', 'Monthly Reports']
+      benefits: ['Voting Rights', 'Proposal Viewing', 'Community Access', 'Monthly Reports'],
+      fullDescription: 'Start your journey in decentralized governance with our Basic DAO Membership. This entry-level membership gives you fundamental voting rights and access to our governance platform. Perfect for newcomers to DAO participation who want to learn and contribute to the CryptoBolt ecosystem.',
+      features: [
+        'Single vote per proposal',
+        'Access to all governance discussions',
+        'Monthly community reports',
+        'Basic proposal viewing rights',
+        'Community forum access',
+        'Educational resources'
+      ],
+      specifications: {
+        'Voting Power': '1x Standard Vote',
+        'Proposal Access': 'View Only',
+        'Community Level': 'Basic',
+        'Support Priority': 'Standard',
+        'Duration': 'Annual Membership'
+      }
     },
     {
       id: 2,
@@ -27,7 +46,25 @@ export const MarketplacePage: React.FC = () => {
       description: 'Premium DAO membership with enhanced voting power and proposal creation rights',
       type: 'membership',
       tier: 'premium',
-      benefits: ['Enhanced Voting Power (3x)', 'Proposal Creation', 'Priority Support', 'Exclusive Events', 'Treasury Insights']
+      benefits: ['Enhanced Voting Power (3x)', 'Proposal Creation', 'Priority Support', 'Exclusive Events', 'Treasury Insights'],
+      fullDescription: 'Elevate your governance influence with Premium DAO Membership. Designed for active community members who want to shape the future of CryptoBolt through enhanced voting power and proposal creation capabilities.',
+      features: [
+        'Triple voting power (3x)',
+        'Create and submit proposals',
+        'Priority customer support',
+        'Exclusive member events',
+        'Advanced treasury insights',
+        'Early feature access',
+        'Direct team communication',
+        'Quarterly strategy sessions'
+      ],
+      specifications: {
+        'Voting Power': '3x Enhanced Vote',
+        'Proposal Access': 'Create & Submit',
+        'Community Level': 'Premium',
+        'Support Priority': 'High Priority',
+        'Duration': 'Annual Membership'
+      }
     },
     {
       id: 3,
@@ -38,7 +75,27 @@ export const MarketplacePage: React.FC = () => {
       description: 'Elite DAO membership with maximum voting power and governance privileges',
       type: 'membership',
       tier: 'elite',
-      benefits: ['Maximum Voting Power (5x)', 'Fast-Track Proposals', 'Direct Treasury Access', 'Advisory Board Access', 'Custom Analytics']
+      benefits: ['Maximum Voting Power (5x)', 'Fast-Track Proposals', 'Direct Treasury Access', 'Advisory Board Access', 'Custom Analytics'],
+      fullDescription: 'The ultimate governance experience for serious stakeholders. Elite membership provides maximum influence in DAO decisions with direct access to treasury management and advisory board participation.',
+      features: [
+        'Maximum voting power (5x)',
+        'Fast-track proposal approval',
+        'Direct treasury access',
+        'Advisory board participation',
+        'Custom analytics dashboard',
+        'White-glove support',
+        'Strategic planning access',
+        'Revenue sharing opportunities',
+        'Executive team meetings',
+        'Platform roadmap influence'
+      ],
+      specifications: {
+        'Voting Power': '5x Maximum Vote',
+        'Proposal Access': 'Fast-Track Approval',
+        'Community Level': 'Elite',
+        'Support Priority': 'VIP Support',
+        'Duration': 'Annual Membership'
+      }
     },
     {
       id: 4,
@@ -47,7 +104,27 @@ export const MarketplacePage: React.FC = () => {
       rating: 4.8,
       image: 'https://images.pexels.com/photos/159888/pexels-photo-159888.jpeg?auto=compress&cs=tinysrgb&w=400',
       description: 'Master cryptocurrency trading with expert guidance and strategies',
-      type: 'course'
+      type: 'course',
+      fullDescription: 'Comprehensive cryptocurrency trading course designed for both beginners and intermediate traders. Learn from industry experts with over 10 years of combined trading experience and proven track records.',
+      features: [
+        '40+ hours of video content',
+        'Live trading sessions',
+        'Technical analysis masterclass',
+        'Risk management strategies',
+        'Portfolio optimization techniques',
+        'Market psychology insights',
+        'Trading bot setup guide',
+        'Lifetime course updates',
+        'Private Discord community',
+        'One-on-one mentoring session'
+      ],
+      specifications: {
+        'Course Duration': '8 Weeks',
+        'Video Content': '40+ Hours',
+        'Live Sessions': '16 Sessions',
+        'Community Access': 'Lifetime',
+        'Certification': 'Included'
+      }
     },
     {
       id: 5,
@@ -56,15 +133,35 @@ export const MarketplacePage: React.FC = () => {
       rating: 4.7,
       image: 'https://images.pexels.com/photos/590020/pexels-photo-590020.jpeg?auto=compress&cs=tinysrgb&w=400',
       description: 'Advanced market analysis and trading signals for better decisions',
-      type: 'service'
+      type: 'service',
+      fullDescription: 'Professional-grade analytics service providing real-time market insights, trading signals, and comprehensive market analysis. Powered by AI and machine learning algorithms for maximum accuracy.',
+      features: [
+        'Real-time trading signals',
+        'Advanced technical indicators',
+        'Market sentiment analysis',
+        'Portfolio performance tracking',
+        'Risk assessment tools',
+        'Custom alert system',
+        'Mobile app access',
+        'API integration',
+        'Historical data analysis',
+        '24/7 market monitoring'
+      ],
+      specifications: {
+        'Signal Accuracy': '85%+ Success Rate',
+        'Update Frequency': 'Real-time',
+        'Supported Assets': '500+ Cryptocurrencies',
+        'API Calls': 'Unlimited',
+        'Mobile Access': 'iOS & Android'
+      }
     }
   ]
 
   const nftCollections = [
     {
       id: 1,
-      name: 'CryptoVault Genesis',
-      description: 'The original CryptoVault NFT collection featuring unique digital art',
+      name: 'CryptoBolt Genesis',
+      description: 'The original CryptoBolt NFT collection featuring unique digital art',
       image: 'https://images.pexels.com/photos/8369648/pexels-photo-8369648.jpeg?auto=compress&cs=tinysrgb&w=400',
       floorPrice: 2.5,
       totalVolume: 1250,
@@ -100,7 +197,7 @@ export const MarketplacePage: React.FC = () => {
     {
       id: 1,
       name: 'Genesis Dragon #1247',
-      collection: 'CryptoVault Genesis',
+      collection: 'CryptoBolt Genesis',
       price: 3.2,
       image: 'https://images.pexels.com/photos/8369648/pexels-photo-8369648.jpeg?auto=compress&cs=tinysrgb&w=400',
       rarity: 'Legendary',
@@ -152,7 +249,7 @@ export const MarketplacePage: React.FC = () => {
     {
       id: 4,
       name: 'Mystic Phoenix #0001',
-      collection: 'CryptoVault Genesis',
+      collection: 'CryptoBolt Genesis',
       price: 5.8,
       image: 'https://images.pexels.com/photos/8369652/pexels-photo-8369652.jpeg?auto=compress&cs=tinysrgb&w=400',
       rarity: 'Mythic',
@@ -239,6 +336,30 @@ export const MarketplacePage: React.FC = () => {
     }
   }
 
+  const getProductIcon = (type: string) => {
+    switch (type) {
+      case 'membership': return Vote
+      case 'course': return Award
+      case 'service': return TrendingUp
+      default: return ShoppingBag
+    }
+  }
+
+  const getProductGradient = (type: string, tier?: string) => {
+    if (type === 'membership') {
+      return getTierColor(tier || 'basic')
+    }
+    switch (type) {
+      case 'course': return 'from-green-500 to-emerald-600'
+      case 'service': return 'from-indigo-500 to-purple-600'
+      default: return 'from-gray-500 to-gray-600'
+    }
+  }
+
+  const handlePurchase = (product: any) => {
+    navigate('/payment', { state: { product } })
+  }
+
   const NFTDetailModal = ({ nft }: { nft: any }) => (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
@@ -318,7 +439,10 @@ export const MarketplacePage: React.FC = () => {
               </div>
               
               <div className="space-y-4">
-                <button className="w-full px-6 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-medium hover:from-blue-600 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl">
+                <button 
+                  onClick={() => handlePurchase({ ...nft, price: nft.price * 2400, type: 'nft' })}
+                  className="w-full px-6 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-medium hover:from-blue-600 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl"
+                >
                   Buy Now
                 </button>
                 <button className="w-full px-6 py-4 border-2 border-gray-300 text-gray-700 rounded-xl font-medium hover:bg-gray-50 transition-colors">
@@ -355,6 +479,127 @@ export const MarketplacePage: React.FC = () => {
       </div>
     </div>
   )
+
+  const ProductDetailModal = ({ product }: { product: any }) => {
+    const ProductIcon = getProductIcon(product.type)
+    
+    return (
+      <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+        <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="p-6 border-b border-gray-200">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <div className={`p-2 bg-gradient-to-r ${getProductGradient(product.type, product.tier)} rounded-xl`}>
+                  <ProductIcon className="h-6 w-6 text-white" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-900">{product.name}</h2>
+                  <div className="flex items-center space-x-2 mt-1">
+                    <span className="text-sm text-gray-600 capitalize">{product.type}</span>
+                    {product.tier && (
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${getTierBadge(product.tier)}`}>
+                        {product.tier.toUpperCase()}
+                      </span>
+                    )}
+                    <div className="flex items-center">
+                      <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                      <span className="text-sm text-gray-600 ml-1">{product.rating}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button
+                onClick={() => setSelectedProduct(null)}
+                className="p-2 hover:bg-gray-100 rounded-xl transition-colors group"
+              >
+                <X className="h-6 w-6 text-gray-500 group-hover:text-gray-700" />
+              </button>
+            </div>
+          </div>
+          
+          <div className="p-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div>
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-64 object-cover rounded-2xl mb-6"
+                />
+                
+                <div className="mb-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Description</h3>
+                  <p className="text-gray-600 leading-relaxed">{product.fullDescription}</p>
+                </div>
+
+                {product.specifications && (
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Specifications</h3>
+                    <div className="space-y-3">
+                      {Object.entries(product.specifications).map(([key, value]) => (
+                        <div key={key} className="flex justify-between py-2 border-b border-gray-100">
+                          <span className="text-gray-600">{key}:</span>
+                          <span className="text-gray-900 font-medium">{value as string}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+              
+              <div className="space-y-6">
+                <div className={`bg-gradient-to-r ${getProductGradient(product.type, product.tier)} rounded-2xl p-6 text-white`}>
+                  <div className="text-sm text-white/80 mb-1">Price</div>
+                  <div className="text-3xl font-bold">${product.price}</div>
+                  <div className="text-sm text-white/80 mt-1">
+                    {product.type === 'membership' ? 'Annual Membership' : 'One-time Purchase'}
+                  </div>
+                </div>
+                
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                    {product.type === 'membership' ? 'Membership Benefits' : 'Features Included'}
+                  </h3>
+                  <div className="space-y-3">
+                    {product.features.map((feature: string, index: number) => (
+                      <div key={index} className="flex items-start space-x-3">
+                        <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                        <span className="text-gray-700">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
+                <div className="space-y-4">
+                  <button 
+                    onClick={() => handlePurchase(product)}
+                    className={`w-full px-6 py-4 bg-gradient-to-r ${getProductGradient(product.type, product.tier)} text-white rounded-xl font-medium hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2`}
+                  >
+                    {getTierIcon(product.tier || 'basic')}
+                    {product.type === 'membership' ? 'Join Now' : 'Purchase'}
+                  </button>
+                  <button className="w-full px-6 py-4 border-2 border-gray-300 text-gray-700 rounded-xl font-medium hover:bg-gray-50 transition-colors">
+                    Add to Wishlist
+                  </button>
+                </div>
+                
+                <div className="bg-gray-50 rounded-xl p-4">
+                  <h4 className="font-semibold text-gray-900 mb-3">What's Included</h4>
+                  <div className="space-y-2 text-sm">
+                    {product.benefits?.map((benefit: string, index: number) => (
+                      <div key={index} className="flex items-center space-x-2">
+                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                        <span className="text-gray-700">{benefit}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
@@ -541,7 +786,13 @@ export const MarketplacePage: React.FC = () => {
                         <div className="text-sm text-gray-600">Price</div>
                         <div className="text-lg font-bold text-gray-900">{nft.price} ETH</div>
                       </div>
-                      <button className="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-600 text-white rounded-xl font-medium hover:from-purple-600 hover:to-pink-700 transition-all duration-300 text-sm">
+                      <button 
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          handlePurchase({ ...nft, price: nft.price * 2400, type: 'nft' })
+                        }}
+                        className="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-600 text-white rounded-xl font-medium hover:from-purple-600 hover:to-pink-700 transition-all duration-300 text-sm"
+                      >
                         Buy Now
                       </button>
                     </div>
@@ -602,13 +853,13 @@ export const MarketplacePage: React.FC = () => {
             </div>
             <div>
               <h2 className="text-2xl font-bold text-gray-900">DAO Memberships</h2>
-              <p className="text-gray-600">Join our decentralized governance and shape the future of CryptoVault</p>
+              <p className="text-gray-600">Join our decentralized governance and shape the future of CryptoBolt</p>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
             {products.filter(product => product.type === 'membership').map((product) => (
-              <div key={product.id} className="bg-white/60 backdrop-blur-sm rounded-2xl border border-white/30 shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative">
+              <div key={product.id} className="bg-white/60 backdrop-blur-sm rounded-2xl border border-white/30 shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative cursor-pointer" onClick={() => setSelectedProduct(product)}>
                 {product.tier === 'elite' && (
                   <div className="absolute top-4 right-4 z-10">
                     <span className="px-3 py-1 bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs font-bold rounded-full">
@@ -661,9 +912,15 @@ export const MarketplacePage: React.FC = () => {
                   
                   <div className="flex items-center justify-between">
                     <span className="text-2xl font-bold text-gray-900">${product.price}</span>
-                    <button className={`px-6 py-3 bg-gradient-to-r ${getTierColor(product.tier!)} text-white rounded-xl font-medium hover:shadow-lg transition-all duration-300 flex items-center gap-2`}>
+                    <button 
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        handlePurchase(product)
+                      }}
+                      className={`px-6 py-3 bg-gradient-to-r ${getTierColor(product.tier!)} text-white rounded-xl font-medium hover:shadow-lg transition-all duration-300 flex items-center gap-2`}
+                    >
                       {getTierIcon(product.tier!)}
-                      Join DAO
+                      Join Now
                     </button>
                   </div>
                 </div>
@@ -720,7 +977,7 @@ export const MarketplacePage: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {products.filter(product => product.type !== 'membership').map((product) => (
-              <div key={product.id} className="bg-white/60 backdrop-blur-sm rounded-2xl border border-white/30 shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+              <div key={product.id} className="bg-white/60 backdrop-blur-sm rounded-2xl border border-white/30 shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer" onClick={() => setSelectedProduct(product)}>
                 <img
                   src={product.image}
                   alt={product.name}
@@ -737,9 +994,15 @@ export const MarketplacePage: React.FC = () => {
                   <p className="text-gray-600 mb-4">{product.description}</p>
                   <div className="flex items-center justify-between">
                     <span className="text-2xl font-bold text-gray-900">${product.price}</span>
-                    <button className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-medium hover:from-blue-600 hover:to-purple-700 transition-all duration-300 flex items-center gap-2">
+                    <button 
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        handlePurchase(product)
+                      }}
+                      className={`px-4 py-2 bg-gradient-to-r ${getProductGradient(product.type)} text-white rounded-xl font-medium hover:shadow-lg transition-all duration-300 flex items-center gap-2`}
+                    >
                       <ShoppingBag className="h-4 w-4" />
-                      Buy Now
+                      Purchase
                     </button>
                   </div>
                 </div>
@@ -776,6 +1039,9 @@ export const MarketplacePage: React.FC = () => {
 
       {/* NFT Detail Modal */}
       {selectedNFT && <NFTDetailModal nft={selectedNFT} />}
+
+      {/* Product Detail Modal */}
+      {selectedProduct && <ProductDetailModal product={selectedProduct} />}
     </div>
   )
 }

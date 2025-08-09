@@ -7,6 +7,7 @@ import { Home } from './components/Home'
 import { SignIn } from './components/SignIn'
 import { Dashboard } from './components/Dashboard'
 import { MarketplacePage } from './components/MarketplacePage'
+import { PaymentPage } from './components/PaymentPage'
 import { TradePage } from './components/TradePage'
 import { CryptoDetailPage } from './components/CryptoDetailPage'
 import { NewsPage } from './components/NewsPage'
@@ -256,10 +257,7 @@ const Header: React.FC = () => {
                   <span className="text-gray-700 font-medium">{user?.name || user?.email}</span>
                 </div>
                 <button
-                  onClick={() => {
-                    handleLogout()
-                    setIsMenuOpen(false)
-                  }}
+                  onClick={handleLogout}
                   className="flex items-center space-x-2 text-red-600 hover:text-red-700 font-medium transition-colors"
                 >
                   <LogOut className="h-4 w-4" />
@@ -268,23 +266,15 @@ const Header: React.FC = () => {
               </div>
             ) : (
               <div className="space-y-4">
-                <a
-                  href="#features"
-                  className="block text-gray-700 hover:text-primary font-medium transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
+                <a href="#features" className="block text-gray-700 hover:text-primary font-medium transition-colors">
                   Features
                 </a>
-                <a
-                  href="#contact"
-                  className="block text-gray-700 hover:text-primary font-medium transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
+                <a href="#contact" className="block text-gray-700 hover:text-primary font-medium transition-colors">
                   Contact
                 </a>
                 <Link
                   to="/signin"
-                  className="block w-full text-center px-6 py-2 bg-gradient-to-r from-primary to-primary-dark text-white rounded-xl font-medium hover:from-primary-dark hover:to-primary transition-all duration-300"
+                  className="block px-6 py-2 bg-gradient-to-r from-primary to-primary-dark text-white rounded-xl font-medium hover:from-primary-dark hover:to-primary transition-all duration-300 shadow-lg hover:shadow-xl text-center"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Sign In
@@ -299,157 +289,107 @@ const Header: React.FC = () => {
 }
 
 // Protected Route Component
-const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
+const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { isAuthenticated } = useAuth()
-  return isAuthenticated ? <>{children}</> : <Navigate to="/signin" replace />
+  return isAuthenticated ? <>{children}</> : <Navigate to="/signin" />
 }
 
-// Public Route Component (redirect to dashboard if authenticated)
-const PublicRoute = ({ children }: { children: React.ReactNode }) => {
-  const { isAuthenticated } = useAuth()
-  if (isAuthenticated) {
-    return <Navigate to="/dashboard" replace />
-  }
-  return <>{children}</>
-}
-
-function AppContent() {
-  const { isAuthenticated } = useAuth()
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-cryptobolt-50 via-cyan-50 to-teal-50 font-inter">
-      {/* Background Pattern */}
-      <div className="fixed inset-0 opacity-30">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-cryptobolt-400/20 to-cyan-400/20"></div>
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 25% 25%, rgba(57, 174, 178, 0.1) 0%, transparent 50%),
-                           radial-gradient(circle at 75% 75%, rgba(57, 174, 178, 0.15) 0%, transparent 50%)`
-        }}></div>
-      </div>
-      
-      <div className="relative z-10">
-        <Header />
-        
-        <Routes>
-          <Route 
-            path="/" 
-            element={
-              <PublicRoute>
-                <Home />
-              </PublicRoute>
-            } 
-          />
-          <Route 
-            path="/signin" 
-            element={
-              <PublicRoute>
-                <SignIn />
-              </PublicRoute>
-            } 
-          />
-          <Route 
-            path="/dashboard" 
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            } 
-          />
-          <Route 
-            path="/marketplace" 
-            element={
-              <ProtectedRoute>
-                <MarketplacePage />
-              </ProtectedRoute>
-            } 
-          />
-          <Route 
-            path="/wallet" 
-            element={
-              <ProtectedRoute>
-                <WalletPage />
-              </ProtectedRoute>
-            } 
-          />
-          <Route 
-            path="/trade" 
-            element={
-              <ProtectedRoute>
-                <TradePage />
-              </ProtectedRoute>
-            } 
-          />
-          <Route 
-            path="/news" 
-            element={
-              <ProtectedRoute>
-                <NewsPage />
-              </ProtectedRoute>
-            } 
-          />
-          <Route 
-            path="/dao" 
-            element={
-              <ProtectedRoute>
-                <DAOPage />
-              </ProtectedRoute>
-            } 
-          />
-          <Route 
-            path="/transactions" 
-            element={
-              <ProtectedRoute>
-                <TransactionsPage />
-              </ProtectedRoute>
-            } 
-          />
-          <Route 
-            path="/settings" 
-            element={
-              <ProtectedRoute>
-                <SettingsPage />
-              </ProtectedRoute>
-            } 
-          />
-          <Route 
-            path="/crypto/:cryptoId" 
-            element={
-              <ProtectedRoute>
-                <CryptoDetailPage />
-              </ProtectedRoute>
-            } 
-          />
-          {/* Redirect authenticated users from root to dashboard */}
-          <Route 
-            path="*" 
-            element={<Navigate to={isAuthenticated ? "/dashboard" : "/"} replace />} 
-          />
-        </Routes>
-        
-        {!isAuthenticated && <Footer />}
-      </div>
-      
-      <Toaster
-        position="top-right"
-        toastOptions={{
-          duration: 4000,
-          style: {
-            background: 'rgba(255, 255, 255, 0.9)',
-            backdropFilter: 'blur(10px)',
-            border: '1px solid rgba(255, 255, 255, 0.3)',
-            borderRadius: '12px',
-          },
-        }}
-      />
-    </div>
-  )
-}
-
-function App() {
+// Main App Component
+const App: React.FC = () => {
   return (
     <AuthContextProvider>
       <Router>
-        <AppContent />
+        <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
+          <Header />
+          <main className="flex-1">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/signin" element={<SignIn />} />
+              <Route
+                path="/dashboard"
+                element={
+                  <ProtectedRoute>
+                    <Dashboard />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/marketplace"
+                element={
+                  <ProtectedRoute>
+                    <MarketplacePage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/payment"
+                element={
+                  <ProtectedRoute>
+                    <PaymentPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/trade"
+                element={
+                  <ProtectedRoute>
+                    <TradePage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/crypto/:id"
+                element={
+                  <ProtectedRoute>
+                    <CryptoDetailPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/news"
+                element={
+                  <ProtectedRoute>
+                    <NewsPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/transactions"
+                element={
+                  <ProtectedRoute>
+                    <TransactionsPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/dao"
+                element={
+                  <ProtectedRoute>
+                    <DAOPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/wallet"
+                element={
+                  <ProtectedRoute>
+                    <WalletPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/settings"
+                element={
+                  <ProtectedRoute>
+                    <SettingsPage />
+                  </ProtectedRoute>
+                }
+              />
+            </Routes>
+          </main>
+          <Footer />
+          <Toaster position="top-right" />
+        </div>
       </Router>
     </AuthContextProvider>
   )
